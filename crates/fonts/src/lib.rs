@@ -158,7 +158,7 @@ mod tests {
     fn colour_fonts_are_recognised() {
         let db = FontDb::with_font_dirs(Vec::new());
         assert!(db.add_font(include_bytes!("../../render/tests/fixtures/colr-squares.ttf").to_vec()) > 0);
-        assert!(db.face("FreeANDIY Slides Colr Squares", "Regular").is_color());
+        assert!(db.face("DeckCraft Colr Squares", "Regular").is_color());
         assert!(!fontdb::last_resort_face().is_color());
     }
 
@@ -194,18 +194,14 @@ mod tests {
         // Documents name fonts by their Windows family ("Segoe UI Semibold"); the font's
         // typographic family is "Segoe UI" with a "Semibold" style. The fixture is named the same way.
         let check = |db: &FontDb| {
-            assert!(db.has_family("FreeANDIY Slides Legacy Semibold"));
+            assert!(db.has_family("DeckCraft Legacy Semibold"));
             for style in ["Regular", "Bold"] {
-                let f = db.face("FreeANDIY Slides Legacy Semibold", style);
-                assert_eq!((f.family.as_str(), f.style.as_str()), ("FreeANDIY Slides Legacy", "Semibold"), "{style}");
+                let f = db.face("DeckCraft Legacy Semibold", style);
+                assert_eq!((f.family.as_str(), f.style.as_str()), ("DeckCraft Legacy", "Semibold"), "{style}");
             }
-            assert_eq!(
-                db.document_face("FreeANDIY Slides Legacy Semibold", "Regular").family,
-                "FreeANDIY Slides Legacy",
-                "installed, so not Calibri"
-            );
+            assert_eq!(db.document_face("DeckCraft Legacy Semibold", "Regular").family, "DeckCraft Legacy", "installed, so not Calibri");
             // The typographic name still works.
-            assert_eq!(db.face("FreeANDIY Slides Legacy", "Semibold").style, "Semibold");
+            assert_eq!(db.face("DeckCraft Legacy", "Semibold").style, "Semibold");
         };
         // Loaded directly…
         let db = FontDb::with_font_dirs(Vec::new());
@@ -223,8 +219,8 @@ mod tests {
             // family's Regular must still load and pick the Regular file, not settle for Semibold.
             let db = FontDb::with_font_dirs(vec![dir]);
             db.set_system_fallback(false);
-            assert_eq!(db.face("FreeANDIY Slides Legacy Semibold", "Regular").style, "Semibold");
-            let regular = db.face("FreeANDIY Slides Legacy", "Regular");
+            assert_eq!(db.face("DeckCraft Legacy Semibold", "Regular").style, "Semibold");
+            let regular = db.face("DeckCraft Legacy", "Regular");
             assert_eq!((regular.style.as_str(), regular.weight), ("Regular", 400.0));
         }
     }
