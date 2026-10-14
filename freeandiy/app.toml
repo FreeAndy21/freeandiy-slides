@@ -16,7 +16,7 @@ ci_tests = "false"
 
 [check]
 # check-branding.sh: extra allowed strings (regex) and Rust paths where the upstream name may stay
-# in string literals (git pathspecs, space-separated). The .deckcraft document format keeps its
+# in string literals (git pathspecs, space-separated); crates/fonts/src/lib.rs names its test fonts. The .deckcraft document format keeps its
 # MIME type, so files open in both apps.
 allow = "vnd\\.storyteller\\."
-rs_exclude = ":!xtask/**"
+rs_exclude = ":!xtask/** :!crates/fonts/src/lib.rs"
