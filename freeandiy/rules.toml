@@ -279,7 +279,8 @@ min = 0
 [[replace]]
 name = "product name DeckCraft (Rust code, not comments; whole word)"
 include = ["**/*.rs"]
-exclude = ["xtask/**", "vendor/**"]
+# crates/fonts/src/lib.rs: only its tests name DeckCraft, as the family names of the test fonts.
+exclude = ["xtask/**", "vendor/**", "crates/fonts/src/lib.rs"]
 regex = '\bDeckCraft\b'
 replace = "{{this.name}}"
 skip_comments = ["//"]
