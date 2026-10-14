@@ -1,5 +1,5 @@
 //! Loopback JSON-lines control server: one request per line, one reply per line.
-//! This is the transport the MCP server (`deckcraft-cli mcp --connect`) wraps.
+//! This is the transport the MCP server (`freeandiy-slides-cli mcp --connect`) wraps.
 
 use std::io::{BufRead, BufReader, Write};
 use std::net::{TcpListener, TcpStream};

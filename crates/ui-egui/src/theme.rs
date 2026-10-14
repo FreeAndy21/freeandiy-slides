@@ -46,7 +46,7 @@ pub struct Tokens {
 
 impl Tokens {
     pub fn light() -> Self {
-        Tokens {
+        crate::freeandiy::tokens(Tokens {
             dark: false,
             chrome: Color32::from_rgb(0xF5, 0xF5, 0xF5),
             card: Color32::WHITE,
@@ -71,10 +71,10 @@ impl Tokens {
             text_selection: Color32::from_rgba_unmultiplied(0x5A, 0x8F, 0xE0, 90),
             field_bg: Color32::WHITE,
             shadow: Color32::from_black_alpha(28),
-        }
+        })
     }
     pub fn dark() -> Self {
-        Tokens {
+        crate::freeandiy::tokens(Tokens {
             dark: true,
             chrome: Color32::from_rgb(0x26, 0x26, 0x26),
             card: Color32::from_rgb(0x33, 0x33, 0x33),
@@ -99,7 +99,7 @@ impl Tokens {
             text_selection: Color32::from_rgba_unmultiplied(0x5A, 0x8F, 0xE0, 90),
             field_bg: Color32::from_rgb(0x2A, 0x2A, 0x2A),
             shadow: Color32::from_black_alpha(90),
-        }
+        })
     }
     pub fn for_brightness(b: Brightness) -> Self {
         match b {
@@ -141,6 +141,7 @@ pub fn apply(ctx: &egui::Context, t: &Tokens) {
     v.widgets.open.weak_bg_fill = t.pressed;
     v.window_shadow = egui::epaint::Shadow { offset: [0, 4], blur: 18, spread: 0, color: t.shadow };
     v.popup_shadow = egui::epaint::Shadow { offset: [0, 3], blur: 12, spread: 0, color: t.shadow };
+    crate::freeandiy::visuals(&mut v);
     ctx.set_visuals(v);
     ctx.global_style_mut(|s| {
         s.spacing.item_spacing = egui::vec2(6.0, 4.0);
@@ -190,6 +191,7 @@ pub fn font_definitions(extra: &[std::sync::Arc<deckcraft_fonts::FontFace>]) -> 
     let mut bold: Vec<String> = names.iter().filter(|(fam, st, _)| *fam == "Inter" && *st == "SemiBold").map(|(_, _, n)| n.clone()).collect();
     bold.extend(defs.families.get(&FontFamily::Proportional).cloned().unwrap_or_default());
     defs.families.insert(FontFamily::Name("bold".into()), bold);
+    crate::freeandiy::ui_fonts(&mut defs);
     add_fallback_faces(&mut defs, extra);
     // The Japanese interface face (the first one when Inter isn't embedded) hints its en and em
     // dashes, bars thinner than a pixel, down to nothing, so they drew as gaps in interface text;

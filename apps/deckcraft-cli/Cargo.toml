@@ -9,8 +9,9 @@ publish = false
 [lints]
 workspace = true
 
+# FreeANDIY: the executable carries the product name; the package keeps upstream's.
 [[bin]]
-name = "deckcraft-cli"
+name = "freeandiy-slides-cli"
 path = "src/main.rs"
 
 [dependencies]

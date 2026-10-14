@@ -7,19 +7,19 @@
 
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
-    println!("cargo:rerun-if-changed=../../assets/app-icon/deckcraft.ico");
+    println!("cargo:rerun-if-changed=../../assets/app-icon/freeandiy-slides.ico");
     println!("cargo:rerun-if-env-changed=DECKCRAFT_REQUIRE_WINRES");
     if std::env::var("CARGO_CFG_TARGET_OS").as_deref() != Ok("windows") {
         return;
     }
     let mut res = winresource::WindowsResource::new();
-    res.set_icon("../../assets/app-icon/deckcraft.ico")
-        .set("ProductName", "DeckCraft")
-        .set("FileDescription", "DeckCraft presentations")
+    res.set_icon("../../assets/app-icon/freeandiy-slides.ico")
+        .set("ProductName", "FreeANDIY Slides")
+        .set("FileDescription", "FreeANDIY Slides presentations")
         .set("CompanyName", "Learning Machines LLC")
-        .set("LegalCopyright", "Copyright (c) the DeckCraft authors. MIT OR Apache-2.0.")
-        .set("OriginalFilename", "deckcraft.exe")
-        .set("InternalName", "deckcraft");
+        .set("LegalCopyright", "Copyright (c) Free Andy Agency and the DeckCraft authors. MIT OR Apache-2.0.")
+        .set("OriginalFilename", "freeandiy-slides.exe")
+        .set("InternalName", "freeandiy-slides");
     if let Err(e) = res.compile() {
         if std::env::var_os("DECKCRAFT_REQUIRE_WINRES").is_some() {
             eprintln!("embedding Windows resources failed: {e}");

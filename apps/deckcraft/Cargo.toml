@@ -5,7 +5,12 @@ edition.workspace = true
 license.workspace = true
 description = "DeckCraft desktop app"
 publish = false
-default-run = "deckcraft"
+default-run = "freeandiy-slides"
+
+# FreeANDIY: the executable carries the product name; the package keeps upstream's.
+[[bin]]
+name = "freeandiy-slides"
+path = "src/main.rs"
 
 [lints]
 workspace = true

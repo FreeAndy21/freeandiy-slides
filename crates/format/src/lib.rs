@@ -21,7 +21,7 @@ const MAX_ENTRY: u64 = 2 << 30;
 
 #[derive(Debug, thiserror::Error)]
 pub enum FormatError {
-    #[error("not a DeckCraft file: {0}")]
+    #[error("not a FreeANDIY Slides file: {0}")]
     NotOurs(String),
     #[error("damaged file: {0}")]
     Damaged(String),
@@ -52,7 +52,7 @@ pub fn save(p: &Presentation) -> Result<Vec<u8>> {
         let m = Manifest {
             format: "deckcraft".into(),
             version: VERSION,
-            generator: format!("DeckCraft {}", env!("CARGO_PKG_VERSION")),
+            generator: format!("FreeANDIY Slides {}", env!("CARGO_PKG_VERSION")),
             presentation: p.clone(),
         };
         let json = serde_json::to_vec(&m).map_err(|e| FormatError::Write(e.to_string()))?;
