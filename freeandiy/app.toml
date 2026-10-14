@@ -1,0 +1,22 @@
+# This repository's FreeANDIY settings (branding.toml is shared by all FreeANDIY repositories).
+# Modified-by: FreeANDIY (Free Andy Agency), 2026. New file, not part of upstream DeckCraft.
+
+app = "slides" # which [apps.<id>] entry of branding.toml this repository builds
+
+[build]
+# cargo arguments for the release binaries, the tests sync-upstream.sh runs, and the web page.
+bins = "-p deckcraft -p deckcraft-cli"
+features = ""
+tests = "-p deckcraft-ui-egui -p deckcraft-engine -p deckcraft -p deckcraft-cli"
+web_index = "apps/deckcraft-web/index.html"
+test_env = ""
+web_env = ""
+# Upstream's ci.yml runs `cargo xtask ci` (fmt, clippy, tests, assets).
+ci_tests = "false"
+
+[check]
+# check-branding.sh: extra allowed strings (regex) and Rust paths where the upstream name may stay
+# in string literals (git pathspecs, space-separated). The .deckcraft document format keeps its
+# MIME type, so files open in both apps.
+allow = "vnd\\.storyteller\\."
+rs_exclude = ":!xtask/**"
