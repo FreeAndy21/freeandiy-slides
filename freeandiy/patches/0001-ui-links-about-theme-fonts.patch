@@ -136,7 +136,7 @@ index ec97e6e..b8ba332 100644
              _ => return Err(format!("unknown UI command `{id}`")),
          }
 diff --git a/crates/ui-egui/src/theme.rs b/crates/ui-egui/src/theme.rs
-index 1847d47..2ba6e65 100644
+index 1847d47..44120e8 100644
 --- a/crates/ui-egui/src/theme.rs
 +++ b/crates/ui-egui/src/theme.rs
 @@ -46,7 +46,7 @@ pub struct Tokens {
@@ -161,15 +161,15 @@ index 1847d47..2ba6e65 100644
              dark: true,
              chrome: Color32::from_rgb(0x26, 0x26, 0x26),
              card: Color32::from_rgb(0x33, 0x33, 0x33),
-@@ -105,7 +105,7 @@ impl Tokens {
-         match b {
-             Brightness::Light => Self::light(),
-             Brightness::Dark => Self::dark(),
+@@ -99,7 +99,7 @@ impl Tokens {
+             text_selection: Color32::from_rgba_unmultiplied(0x5A, 0x8F, 0xE0, 90),
+             field_bg: Color32::from_rgb(0x2A, 0x2A, 0x2A),
+             shadow: Color32::from_black_alpha(90),
 -        }
 +        })
      }
-     pub fn get(ctx: &egui::Context) -> Self {
-         if ctx.global_style().visuals.dark_mode { Self::dark() } else { Self::light() }
+     pub fn for_brightness(b: Brightness) -> Self {
+         match b {
 @@ -141,6 +141,7 @@ pub fn apply(ctx: &egui::Context, t: &Tokens) {
      v.widgets.open.weak_bg_fill = t.pressed;
      v.window_shadow = egui::epaint::Shadow { offset: [0, 4], blur: 18, spread: 0, color: t.shadow };
