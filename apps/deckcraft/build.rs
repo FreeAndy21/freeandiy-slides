@@ -16,7 +16,7 @@ fn main() {
     res.set_icon("../../assets/app-icon/freeandiy-slides.ico")
         .set("ProductName", "FreeANDIY Slides")
         .set("FileDescription", "FreeANDIY Slides presentations")
-        .set("CompanyName", "Learning Machines LLC")
+        .set("CompanyName", "Free Andy Agency")
         .set("LegalCopyright", "Copyright (c) Free Andy Agency and the DeckCraft authors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "freeandiy-slides.exe")
         .set("InternalName", "freeandiy-slides");
