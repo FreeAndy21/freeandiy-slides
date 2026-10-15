@@ -19,4 +19,4 @@ ci_tests = "false"
 # in string literals (git pathspecs, space-separated); crates/fonts/src/lib.rs names its test fonts. The .deckcraft document format keeps its
 # MIME type, so files open in both apps.
 allow = "vnd\\.storyteller\\."
-rs_exclude = ":!xtask/** :!crates/fonts/src/lib.rs"
+rs_exclude = ":!xtask/** :!crates/fonts/src/lib.rs :!crates/render/src/tests.rs"
